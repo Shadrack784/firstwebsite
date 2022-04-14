@@ -1,9 +1,17 @@
 <?php
 // define variables and set to empty values
 $titleErr = $seoErr = $genderErr = $categotyErr = "";
-$title = $seo = $content = $categoty = "";
+$title = $_POST['title'];
+$seo = $_POST['seo'];
+$content = $_POST['content'];
+$categoty = $_POST['category'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$db = mysqli_connect("localhost", "admin", "2075", "firstwebsite");
+$query = "";
+mysqli_execute($db, $query);
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
   if (empty($_POST["title"])) {
     $titleErr = "title is required";
   } else {
@@ -40,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = test_input($_POST["content"]);
   }
 
-  if (empty($_POST["gender"])) {
-    $genderErr = "Gender is required";
-  } else {
-    $gender = test_input($_POST["gender"]);
-  }
+  // if (empty($_POST["gender"])) {
+  //   $genderErr = "Gender is required";
+  // } else {
+  //   $gender = test_input($_POST["gender"]);
+  // }
 }
 
 function test_input($data) {
@@ -86,8 +94,8 @@ echo "<br>";
 echo $categoty;
 echo "<br>";
 echo $content;
-echo "<br>";
-echo $gender;
+// echo "<br>";
+// echo $gender;
 ?>
 
 </body>
